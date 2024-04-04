@@ -1,5 +1,7 @@
 import jwt from 'jsonwebtoken';
-import { secret } from '../config.js';
+import { secret } from '../config/index.js';
+import User from '../models/User.js';
+
 
 export const auth = (req, res, next) => {
     // Get token from header
@@ -20,5 +22,32 @@ export const auth = (req, res, next) => {
     } catch (error) {
         console.error(error);
         res.status(401).json({ message: 'Token is not valid' });
+    }
+};
+
+
+export const isAdmin = async (req, res, next) => {
+    try {
+        // Extract token from request header
+        const token = req.header('Authorization').replace('Bearer ', '');
+
+        // Verify token
+        const decoded = jwt.verify(token, process.env.JWT_SECRET);
+
+        // Fetch user from database
+        const user = await User.findById(decoded.id);
+
+        // Check if user is an administrator
+        if (!user.isAdmin) {
+            return res.status(403).json({ message: 'Not authorized as an administrator' });
+        }
+
+        // Store user in request object for further use
+        req.user = user;
+
+        next();
+    } catch (error) {
+        console.error(error);
+        res.status(401).json({ message: 'Not authorized, token failed' });
     }
 };

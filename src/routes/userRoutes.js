@@ -1,9 +1,22 @@
-import express from 'express';
-import { auth } from '../middleware/authMiddleware.js';
-import { getUserProfile } from '../controllers/userController.js';
+import express from "express";
+import { auth } from "../middleware/authMiddleware.js";
+import {
+  getUserProfile,
+  deleteUser,
+  getUsers,
+  sendMessageToUser,
+  updateUserProfile
+} from "../controllers/userController.js";
+import {updateClass} from '../controllers/classController.js'
 
 const router = express.Router();
 
-router.get('/profile', auth, getUserProfile);
+router.get("/profile", auth, getUserProfile);
+router.put("/profile", auth, updateUserProfile);
+router.delete("/:id", auth, deleteUser);
+router.get("/", auth, getUsers);
+router.put("/:id", auth, updateClass);
+router.post('/:id/message', auth, sendMessageToUser);
+
 
 export default router;
