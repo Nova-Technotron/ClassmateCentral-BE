@@ -1,0 +1,32 @@
+{
+  "name": "classmatecentral-be",
+  "version": "1.0.0",
+  "description": "ClassConnect is a comprehensive platform designed to enhance collaboration, communication, and academic success among university students",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon src/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/louisdante9/ClassmateCentral-BE.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/louisdante9/ClassmateCentral-BE/issues"
+  },
+  "homepage": "https://github.com/louisdante9/ClassmateCentral-BE#readme",
+  "devDependencies": {
+    "nodemon": "^3.1.0"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.3.0"
+  }
+}
