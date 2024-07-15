@@ -7,8 +7,9 @@ const regsiterSchema = Joi.object({
     .min(3)
     .max(30)
     .required(),
-    password: Joi.string().min(8).alphanum().required()
-    // Add other wish properties as needed
+    password: Joi.string().min(8).alphanum().required(),
+    firstName: Joi.string().min(2).max(10),
+    lastName: Joi.string().min(2).max(10)
   });
   const loginSchema = Joi.object({
     email: Joi.string().email().required(),

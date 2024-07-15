@@ -1,13 +1,39 @@
 import Notification from '../models/Notification.js';
 
-// Fetch notifications
+
+export const createNotification = async (req, res) => {
+    try {
+        const { title, message } = req.body;
+
+        
+        if (!title || !message) {
+            return res.status(400).json({ message: 'Title and message are required' });
+        }
+
+        const newNotification = new Notification({
+            title,
+            message,
+            user: req.user.id,
+            createdAt: new Date(),
+        });
+
+        await newNotification.save();
+
+        res.status(201).json({ message: 'Notification created successfully', notification: newNotification });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: 'Server error' });
+    }
+};
+
 export const getNotifications = async (req, res) => {
     try {
-        const notifications = await Notification.find({ user: req.user.id }).sort({ createdAt: -1 });
-        if(notifications.length < 1 ){
-            res.json({message: "You have no notification"})
+        const notifications = await Notification.find({ user: req.user.id })
+        // .sort({ createdAt: -1 });
+        if(notifications.length ===0 ){
+          return  res.json({message: "You have no notification"})
         }
-        res.json(notifications);
+        res.json(notifications.reverse());
     } catch (error) {
         console.error(error);
         res.status(500).json({ message: 'Server error' });

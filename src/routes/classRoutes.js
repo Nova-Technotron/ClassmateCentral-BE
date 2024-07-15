@@ -5,7 +5,8 @@ import {
   getClasses,
   joinClass,
   leaveClass,
-  updateClass
+  updateClass, 
+  deleteClass
 } from "../controllers/classController.js";
 
 const router = express.Router();
@@ -15,5 +16,6 @@ router.get("/", auth, getClasses);
 router.post("/join", auth, joinClass);
 router.put("/:id", auth, isAdmin,updateClass)
 router.delete("/:id/leave", auth, leaveClass);
+router.delete("/:id", auth, isAdmin, deleteClass)
 
 export default router;

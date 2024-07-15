@@ -1,6 +1,7 @@
 import express from 'express';
 import { auth } from '../middleware/authMiddleware.js';
 import {
+    createNotification,
     getNotifications,
     markNotificationAsRead,
     deleteNotification,
@@ -8,6 +9,7 @@ import {
 
 const router = express.Router();
 
+router.post('/', auth, createNotification)
 // Fetch notifications
 router.get('/', auth, getNotifications);
 

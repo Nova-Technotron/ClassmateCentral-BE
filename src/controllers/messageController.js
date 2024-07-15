@@ -25,7 +25,7 @@ export const getMessages = async (req, res) => {
         const messages = await Message.find({
             $or: [{ sender: req.user.id }, { recipient: req.user.id }],
         }).sort({ createdAt: -1 });
-        res.json(messages);
+        res.json(messages.reverse());
     } catch (error) {
         console.error(error);
         res.status(500).json({ message: 'Server error' });
@@ -71,9 +71,9 @@ export const deleteMessage = async (req, res) => {
 // Fetch inbox messages
 export const getInboxMessages = async (req, res) => {
     try {
-        const messages = await Message.find({ recipient: req.user.id }).sort({ createdAt: -1 });
+        const messages = await Message.find({ recipient: req.user.id });
         if(messages.length<1){
-            res.json({message:"You have no messages"})
+         return   res.status(404).json({message:"You have no messages"})
         }
         
         res.json(messages);

@@ -37,7 +37,7 @@ const userSchema = new Schema({
     }],
     resetPasswordToken: String,
     resetPasswordExpires: Date
-});
+},{ timestamps: true });
 
 const User = model('User', userSchema);
 

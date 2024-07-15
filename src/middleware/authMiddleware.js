@@ -1,5 +1,5 @@
 import jwt from 'jsonwebtoken';
-import { secret } from '../config/index.js';
+
 import User from '../models/User.js';
 
 
@@ -19,7 +19,7 @@ export const auth = (req, res, next) => {
 
     try {
         // Verify token
-        const decoded = jwt.verify(token, "secret");
+        const decoded = jwt.verify(token, process.env.JWT_SECRET );
 
         // Add user from payload to request object
         req.user = decoded.user;
@@ -37,7 +37,7 @@ export const isAdmin = async (req, res, next) => {
         const token = req.header('Authorization').replace('Bearer ', '');
 
         // Verify token
-        const decoded = jwt.verify(token, "secret");
+        const decoded = jwt.verify(token, process.env.JWT_SECRET );
 
         // Fetch user from database
         const user = await User.findById(decoded.user.id);

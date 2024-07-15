@@ -24,7 +24,9 @@ export const register = async (req, res) => {
         user = new User({
             username,
             email,
-            password
+            password,
+            lastName,
+            firstName
         });
 
         // Hash password
@@ -66,7 +68,7 @@ export const login = async (req, res) => {
             }
         };
 
-        jwt.sign(payload, "secret", { expiresIn: '2h' }, (err, token) => {
+        jwt.sign(payload, process.env.JWT_SECRET , { expiresIn: '2h' }, (err, token) => {
             if (err) throw err;
             res.json({ token });
         });

@@ -1,5 +1,5 @@
 import Class from '../models/Class.js';
-import User from '../models/User.js';
+//import User from '../models/User.js';
 import { validateClass } from '../validators/classValidator.js';
 
 export const createClass = async (req, res) => {
@@ -20,9 +20,9 @@ export const createClass = async (req, res) => {
         });
 
         // Save class to database
-        await newClass.save();
+      const savedClass=  await newClass.save();
 
-        res.status(201).json({ message: 'Class created successfully', class: newClass });
+        res.status(201).json({ message: 'Class created successfully', class: savedClass });
     } catch (error) {
         console.error(error);
         res.status(500).json({ message: 'Server error' });
@@ -63,9 +63,9 @@ export const updateClass = async (req, res) => {
         cls.classCode = classCode;
 
         // Save updated class to database
-        await cls.save();
+      const updatedCls=  await cls.save();
 
-        res.json({ message: 'Class updated successfully', class: cls });
+        res.json({ message: 'Class updated successfully', class: updatedCls });
     } catch (error) {
         console.error(error);
         res.status(500).json({ message: 'Server error' });

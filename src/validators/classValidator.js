@@ -4,7 +4,7 @@ const classSchema = Joi.object({
     className: Joi.string()
     .min(3)
     .required(),
-    className: Joi.string()
+    classCode: Joi.string()
     .min(3)
     .required(),
 
