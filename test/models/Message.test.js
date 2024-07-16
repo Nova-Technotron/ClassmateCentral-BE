@@ -3,10 +3,7 @@ import mongoose from "mongoose";
 import Message from "../../src/models/Message";
 
 beforeAll(async () => {
-  await mongoose.connect(import.meta.env.VITE_MONGODB_TEST, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  });
+  await mongoose.connect(import.meta.env.VITE_MONGODB_TEST, {});
 });
 
 afterAll(async () => {

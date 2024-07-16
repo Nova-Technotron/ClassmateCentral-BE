@@ -40,8 +40,6 @@
 //   expect(savedUser.isAdmin).toBeFalsy();
 // });
 
-
-
 // test("should not create a user with a missing required field", async () => {
 //   const invalidUser = new User({
 //     email: "missinguser@example.com",
@@ -92,13 +90,13 @@
 //   }
 // });
 
-import { describe, it, expect, beforeAll, afterAll, beforeEach } from 'vitest';
-import mongoose from 'mongoose';
-import User from '../../src/models/User'; 
+import { describe, it, expect, beforeAll, afterAll, beforeEach } from "vitest";
+import mongoose from "mongoose";
+import User from "../../src/models/User";
 
-describe('User Model', () => {
+describe("User Model", () => {
   beforeAll(async () => {
-    await mongoose.connect('mongodb://localhost:27017/testdb', { useNewUrlParser: true, useUnifiedTopology: true });
+    await mongoose.connect(import.meta.env.VITE_MONGODB_TEST, {});
   });
 
   afterAll(async () => {
@@ -113,7 +111,7 @@ describe('User Model', () => {
     }
   });
 
-  it('should create and save a user successfully', async () => {
+  it("should create and save a user successfully", async () => {
     const userData = {
       username: "janedoe",
       firstName: "Jane",
@@ -134,7 +132,7 @@ describe('User Model', () => {
     expect(savedUser.isAdmin).toBe(false); // default value
   });
 
-  it('should not create a user with a duplicate username', async () => {
+  it("should not create a user with a duplicate username", async () => {
     const userData = {
       username: "janedoe",
       firstName: "Jane",
@@ -156,12 +154,12 @@ describe('User Model', () => {
     try {
       await duplicateUser.save();
     } catch (error) {
-      console.error('Error message:', error.message); // Log the error message
+      console.error("Error message:", error.message); // Log the error message
       expect(error.message).toMatch(/E11000 duplicate key error/);
     }
   });
 
-  it('should not create a user with a duplicate email', async () => {
+  it("should not create a user with a duplicate email", async () => {
     const userData = {
       username: "janedoe",
       firstName: "Jane",
@@ -183,12 +181,12 @@ describe('User Model', () => {
     try {
       await duplicateUser.save();
     } catch (error) {
-      console.error('Error message:', error.message); // Log the error message
+      console.error("Error message:", error.message); // Log the error message
       expect(error.message).toMatch(/E11000 duplicate key error/);
     }
   });
 
-  it('should require all required fields', async () => {
+  it("should require all required fields", async () => {
     const user = new User();
 
     const error = await user.validateSync();
@@ -199,7 +197,7 @@ describe('User Model', () => {
     expect(error.errors.password).toBeDefined();
   });
 
-  it('should have a default isAdmin value of false', async () => {
+  it("should have a default isAdmin value of false", async () => {
     const userData = {
       username: "janedoe",
       firstName: "Jane",

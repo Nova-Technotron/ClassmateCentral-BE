@@ -22,10 +22,7 @@ vi.mock("../../src/models/Message.js");
 
 describe("User Controller Tests", () => {
   beforeAll(async () => {
-    await mongoose.connect(import.meta.env.VITE_MONGODB_TEST, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    });
+    await mongoose.connect(import.meta.env.VITE_MONGODB_TEST, {});
 
     await User.deleteMany({});
   });

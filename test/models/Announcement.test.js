@@ -4,10 +4,7 @@ import Announcement from "../../src/models/Announcement";
 
 // Connect to an in-memory MongoDB instance for testing
 beforeAll(async () => {
-  await mongoose.connect(import.meta.env.VITE_MONGODB_TEST, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  });
+  await mongoose.connect(import.meta.env.VITE_MONGODB_TEST, {});
 });
 
 
