@@ -28,7 +28,7 @@ describe("User Controller Tests", () => {
   });
 
   afterAll(async () => {
-    await mongoose.connection.db.dropDatabase();
+
     await mongoose.connection.close();
   });
 
