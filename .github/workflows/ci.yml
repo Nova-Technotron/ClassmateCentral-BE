@@ -6,7 +6,7 @@ on:
   pull_request:
     branches: [ "pere/tests" ]
 env:
-  VITE_MONGODB_TEST: mongodb+srv://jumboperebara0:<password>@classconnect.t888ujl.mongodb.net/?retryWrites=true&w=majority&appName=ClassConnect
+  VITE_MONGODB_TEST:mongodb+srv://jumboperebara0:0bnCRX92n25niy0M@classconnect.t888ujl.mongodb.net/?retryWrites=true&w=majority&appName=ClassConnect
 jobs:
   build:
 

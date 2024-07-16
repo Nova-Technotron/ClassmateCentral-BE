@@ -17,7 +17,7 @@ const app = express();
 
 setupSwagger(app);
 
-mongoose.connect(process.env.MONGODB_URL, {})
+mongoose.connect(process.env.MONGODB_URI, {})
 .then(() => {
     console.log('MongoDB connected');
 })
