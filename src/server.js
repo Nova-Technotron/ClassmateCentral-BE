@@ -14,14 +14,9 @@ import userRoutes from './routes/userRoutes.js';
 
 
 const app = express();
-/**
- * Start your Node.js server and 
- * navigate to http://localhost:<PORT>/api-docs 
- * in your web browser to view the generated Swagger documentation.
- */
+
 setupSwagger(app);
 
-// Database connection
 mongoose.connect(process.env.MONGODB_URL, {})
 .then(() => {
     console.log('MongoDB connected');
